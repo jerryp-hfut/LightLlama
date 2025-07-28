@@ -23,14 +23,13 @@ The following components have been implemented:
 
 | Hyperparameter         | Value         |
 |-----------------------|--------------|
-| Number of Layers      | 32           |
-| Hidden Size           | 4096         |
-| Number of Attention Heads | 32       |
-| Vocabulary Size       | 32000        |
-| Intermediate Size     | 11008        |
-| Max Sequence Length   | 2048         |
-| Dropout               | 0.0          |
-| RMSNorm Epsilon       | 1e-5         |
+| Number of Layers      | 4            |
+| Model dimension       | 512          |
+| Number of Attention Heads | 16       |
+| Vocabulary Size       | 10000        |
+| Sequence Length       | 256          |
+| Dropout               | 0.3          |
+| RMSNorm Epsilon       | 1e-6         |
 
 </div>
 
