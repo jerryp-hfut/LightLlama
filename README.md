@@ -1,7 +1,6 @@
 # LightLlama
 
-LightLlama is a lightweight implementation of the Llama architecture from scratch, inspired by Stanford CS336 (2025).  
-This project aims to provide a clear and concise codebase for understanding and experimenting with modern large language model components.
+LightLlama is a lightweight implementation of the Llama architecture from scratch, inspired by Stanford CS336.
 
 ## Features
 
@@ -16,6 +15,9 @@ The following components have been implemented:
   - RMSNorm normalization
   - Residual connections
   - Pre-Normalization (LayerNorm before sublayers)
+- **Training and inferencing Script**:
+  - Pre-training script
+  - Inferencing script
 
 <div align="center">
 
@@ -28,7 +30,7 @@ The following components have been implemented:
 | Number of Attention Heads | 16       |
 | Vocabulary Size       | 10000        |
 | Sequence Length       | 256          |
-| Dropout               | 0.3          |
+| Dropout               | 0.1          |
 | RMSNorm Epsilon       | 1e-6         |
 
 </div>
@@ -37,7 +39,8 @@ The following components have been implemented:
 
 - [x] BPE Tokenizer
 - [x] Llama Model Architecture (RoPE, Causal Masked Attention, KV Cache, SwiGLU, RMSNorm, Residual, Pre-Norm)
-- [ ] Training functionality (coming soon)
+- [x] Pre-Training functionality
+- [ ] SFT Training functionality
 
 ## References
 
