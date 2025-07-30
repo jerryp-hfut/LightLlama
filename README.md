@@ -42,6 +42,13 @@ The following components have been implemented:
 - [x] Pre-Training functionality
 - [ ] SFT Training functionality
 
+## Training Logs
+
+![train loss](./diagrams/training_loss.svg "train loss")
+![validation loss](./diagrams/validation_loss.svg "validation loss")
+![train perplexity](./diagrams/training_perplexity.svg "train perplexity")
+![validation perplexity](./diagrams/validation_perplexity.svg "validation perplexity")
+
 ## References
 
 - [Stanford CS336: Large Language Models](https://web.stanford.edu/class/cs336/)
