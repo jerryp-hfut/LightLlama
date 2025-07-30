@@ -15,11 +15,11 @@ def load_tokenizer():
     )
     return tokenizer
 
-def load_model(checkpoint_path, device, context_length=128):
+def load_model(checkpoint_path, device, context_length=256):
     vocab_size = 10000
-    d_model = 256
-    num_heads = 8
-    num_layers = 2
+    d_model = 768
+    num_heads = 16
+    num_layers = 8
     model = LanguageModel(vocab_size, d_model, num_heads, num_layers, max_seq_len=context_length)
     checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
     model.load_state_dict(checkpoint['model_state_dict'])
@@ -39,7 +39,7 @@ def sample_next_token(logits, temperature=1.0, top_k=20):
         probs = torch.softmax(logits, dim=-1)
         return torch.multinomial(probs, num_samples=1)
 
-def generate(model, tokenizer, prompt, device, max_new_tokens=100, temperature=1.0, top_k=20, context_length=128):
+def generate(model, tokenizer, prompt, device, max_new_tokens=100, temperature=1.0, top_k=20, context_length=256):
     input_ids = tokenizer.encode(prompt)
     input_ids = input_ids[:context_length]
     input_tensor = torch.tensor([input_ids], dtype=torch.long, device=device)
@@ -54,7 +54,6 @@ def generate(model, tokenizer, prompt, device, max_new_tokens=100, temperature=1
         generated.append(next_token_id)
         if next_token_id == tokenizer.special_token_ids.get(b'<|endoftext|>'):
             break
-        # 滑动窗口
         input_tensor = torch.tensor([[next_token_id]], dtype=torch.long, device=device)
     return tokenizer.decode(generated)
 
@@ -65,10 +64,10 @@ def main():
     parser.add_argument('--max_new_tokens', type=int, default=100, help='Number of tokens to generate')
     parser.add_argument('--temperature', type=float, default=1.0, help='Sampling temperature')
     parser.add_argument('--top_k', type=int, default=20, help='Top-k sampling')
-    parser.add_argument('--context_length', type=int, default=128, help='Context length')
+    parser.add_argument('--context_length', type=int, default=256, help='Context length')
     args = parser.parse_args()
 
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     tokenizer = load_tokenizer()
     model = load_model(args.checkpoint, device, context_length=args.context_length)
     print("\nPrompt:", args.prompt)

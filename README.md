@@ -25,8 +25,8 @@ The following components have been implemented:
 
 | Hyperparameter         | Value         |
 |-----------------------|--------------|
-| Number of Layers      | 4            |
-| Model dimension       | 512          |
+| Number of Layers      | 8            |
+| Model dimension       | 768          |
 | Number of Attention Heads | 16       |
 | Vocabulary Size       | 10000        |
 | Sequence Length       | 256          |
